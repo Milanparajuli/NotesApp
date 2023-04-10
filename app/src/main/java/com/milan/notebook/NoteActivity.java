@@ -50,10 +50,8 @@ public class NoteActivity extends AppCompatActivity {
                 String title = etTitle.getText().toString();
                 String description = etDescription.getText().toString();
 
-                Toast.makeText(NoteActivity.this, "Title:"+title+",Description:"+description+" Note Category:"+noteCategory, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NoteActivity.this, "Title:" + title + ",Description:" + description + " Note Category:" + noteCategory, Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
-    }
+}
