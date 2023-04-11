@@ -6,12 +6,31 @@
         android:id="@+id/title"
         android:text="title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="100dp"/>
 
     <TextView
         android:id="@+id/desc"
         android:text="Description"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/cat"
+        android:text="Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"/>
+
+<!--    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--        android:id="@+id/rootRL"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="fill_parent"-->
+<!--        >-->
+<!--    </RelativeLayout>-->
 
 </LinearLayout>
