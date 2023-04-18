@@ -30,6 +30,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         holder.bindView(notes.get(position));
     }
 
+    public void addData(Note note){
+        notes.add(note);
+        notifyItemInserted(notes.size());
+    }
+
     @Override
     public int getItemCount() {
         return notes.size();
@@ -40,6 +45,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         TextView title;
         TextView category;
         TextView description;
+
+
+
 
         public NotesViewHolder(@NonNull View itemView) {
             super(itemView);
