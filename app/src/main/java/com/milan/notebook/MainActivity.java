@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton btnAddNote;
     ArrayList<Note> notes;
     NotesAdapter adapter;
+    NotebookDbHelper dbHelper;
     ActivityResultLauncher<Intent> resultIntent = registerForActivityResult
             (new ActivityResultContracts.StartActivityForResult(),
                     new ActivityResultCallback<ActivityResult>() {
@@ -33,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
                                 String description = data.getExtras().getString("description");
                                 String category = data.getExtras().getString("category");
 
-                                adapter.addData(new Note(title,description,category));
+                               Note note =  new Note(title,description,category);
+                                adapter.addData(note);
+                                dbHelper.addNote(note);
                             }
 
                         }
@@ -44,10 +47,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dbHelper = new NotebookDbHelper(getApplicationContext());
 
         btnAddNote = findViewById(R.id.btnAddNote);
 
         notes = new ArrayList<>();
+        notes.addAll(dbHelper.getAllNotes());
 //        notes.add(new Note("Note1", "Desc 1", "Cat1"));
 //        notes.add(new Note("Note2","Desc 1","Cat1"));
 //        notes.add(new Note("Note3","Desc 1","Cat1"));
