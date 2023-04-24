@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnAddNote = findViewById(R.id.btnAddNote);
 
+
         notes = new ArrayList<>();
         notes.addAll(dbHelper.getAllNotes());
 //        notes.add(new Note("Note1", "Desc 1", "Cat1"));
@@ -62,7 +63,24 @@ public class MainActivity extends AppCompatActivity {
 //        notes.add(new Note("Note7","Desc 1","Cat1"));
 //        notes.add(new Note("Note8","Desc 1","Cat1"));
 
-         adapter = new NotesAdapter(notes);
+         adapter = new NotesAdapter(notes, new NoteListner() {
+             @Override
+             public void onNoteClick(Note note) {
+                 Intent intent = new Intent(MainActivity.this , DetailView.class);
+                 intent.putExtra("title", note.getTitle());
+                 startActivity(intent);
+             }
+
+             @Override
+             public void onNoteEditPress(Note note) {
+
+             }
+
+             @Override
+             public void onNoteDeletePress(Note note) {
+
+             }
+         });
         RecyclerView rv = findViewById(R.id.rv_notes);
         rv.setAdapter(adapter);
 
