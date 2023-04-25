@@ -13,6 +13,8 @@ public class DetailView extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String title = getIntent().getExtras().getString("title");
+        String cat = getIntent().getExtras().getString("category");
+        String desc = getIntent().getExtras().getString("description");
 
         setContentView(R.layout.detail_view);
         tvTitle = findViewById(R.id.tit);
@@ -20,6 +22,8 @@ public class DetailView extends AppCompatActivity {
         tvCategory = findViewById(R.id.cat);
 
         tvTitle.setText("Title is: " + title);
+        tvDes.setText("Category is: " + cat);
+        tvCategory.setText("Description is: " + desc);
 
 
     }

@@ -2,33 +2,48 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
     android:layout_height="match_parent">
-
-    <EditText
-        android:id="@+id/et_note_title"
-        android:hint="Title"
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <Spinner
         android:id="@+id/spinnerCategory"
-        android:layout_below="@id/et_note_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-/>
+        android:layout_alignParentTop="true"
+
+        />
+
+    <EditText
+        android:layout_below="@id/spinnerCategory"
+        android:id="@+id/et_note_title"
+        android:hint="Title"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/bg_edit_text"
+        android:paddingVertical="8dp"
+        android:layout_marginTop="16dp"
+
+        android:paddingHorizontal="16dp"/>
+
     <EditText
         android:id="@+id/et_note_description"
-        android:layout_below="@id/spinnerCategory"
+        android:layout_below="@id/et_note_title"
         android:hint="description"
+        android:background="@drawable/bg_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_marginTop="16dp"
+        android:layout_height="200dp"/>
 
     <Button
         android:id="@+id/addNote"
         android:text="Add Note"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:padding="16dp"/>
 
 </RelativeLayout>
