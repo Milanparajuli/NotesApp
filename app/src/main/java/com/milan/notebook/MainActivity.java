@@ -4,10 +4,12 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
                                 String title = data.getExtras().getString("note_title");
                                 String description = data.getExtras().getString("description");
                                 String category = data.getExtras().getString("category");
+                                Integer color = data.getExtras().getInt("color");
 
-                                Note note = new Note(title, description, category);
+                                Note note = new Note(title, description, category, color);
                                 adapter.addData(note);
                                 dbHelper.addNote(note);
                                 if (llNoNotes.getVisibility() == View.VISIBLE) {
@@ -91,7 +94,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNoteDeletePress(Note note) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("Do you want to Delete ?");
+                builder.setTitle("Alert !");
+                builder.setCancelable(true);
+                builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
 
+                });
+
+                builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {
+                    dialog.cancel();
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
         RecyclerView rv = findViewById(R.id.rv_notes);

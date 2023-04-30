@@ -62,10 +62,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
             title.setText(note.getTitle());
             description.setText(note.getDis());
             category.setText(note.getCategory());
+            itemView.setBackgroundColor(note.getColor());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     noteListner.onNoteClick(note);
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    noteListner.onNoteDeletePress(note);
+                    return false;
                 }
             });
         }

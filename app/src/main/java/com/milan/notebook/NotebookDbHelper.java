@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-public class NotebookDbHelper  extends SQLiteOpenHelper {
+public class NotebookDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "notebook.db";
     private static final String TABLE_NAME = "notes";
@@ -17,6 +17,7 @@ public class NotebookDbHelper  extends SQLiteOpenHelper {
     private static final String NOTE_ENTRY_TITLE = "_title";
     private static final String NOTE_ENTRY_DESCRIPTION = "_description";
     private static final String NOTE_ENTRY_CATEGORY = "_category";
+    private static final String NOTE_ENTRY_COLOR = "_color";
 
     public NotebookDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -24,7 +25,9 @@ public class NotebookDbHelper  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + NOTE_ENTRY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + NOTE_ENTRY_TITLE + " TEXT," + NOTE_ENTRY_DESCRIPTION + " TEXT," + NOTE_ENTRY_CATEGORY + " TEXT)";
+        String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + NOTE_ENTRY_ID +
+                " INTEGER PRIMARY KEY AUTOINCREMENT," + NOTE_ENTRY_TITLE + " TEXT," +
+                NOTE_ENTRY_DESCRIPTION + " TEXT," + NOTE_ENTRY_CATEGORY + " TEXT ," + NOTE_ENTRY_COLOR + " INTEGER)";
         db.execSQL(SQL_CREATE_TABLE);
     }
 
@@ -41,6 +44,7 @@ public class NotebookDbHelper  extends SQLiteOpenHelper {
         values.put(NOTE_ENTRY_DESCRIPTION, note.getDis()
         );
         values.put(NOTE_ENTRY_CATEGORY, note.getCategory());
+        values.put(NOTE_ENTRY_COLOR, note.getColor());
         return db.insert(TABLE_NAME, null, values);
     }
 
@@ -57,7 +61,8 @@ public class NotebookDbHelper  extends SQLiteOpenHelper {
                 String title = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_ENTRY_TITLE));
                 String description = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_ENTRY_DESCRIPTION));
                 String category = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_ENTRY_CATEGORY));
-                Note note = new Note(title, description, category);
+                Integer color = cursor.getInt(cursor.getColumnIndexOrThrow(NOTE_ENTRY_COLOR));
+                Note note = new Note(title, description, category,color);
                 notesList.add(note);
             } while (cursor.moveToNext());
         }
