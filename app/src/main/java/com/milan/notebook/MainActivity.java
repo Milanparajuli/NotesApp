@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 builder.setTitle("Alert !");
                 builder.setCancelable(true);
                 builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
-
+                    dbHelper.deleteNote(note.getId());
+                    adapter.deleteNote(note);
                 });
 
                 builder.setNegativeButton("No", (DialogInterface.OnClickListener) (dialog, which) -> {

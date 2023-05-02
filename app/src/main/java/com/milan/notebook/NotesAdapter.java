@@ -1,5 +1,6 @@
 package com.milan.notebook;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public void addData(Note note){
         notes.add(note);
         notifyItemInserted(notes.size());
+    }
+
+    public void deleteNote(Note note){
+        Integer index = notes.indexOf(note);
+        Log.d("tag", index.toString());
+        notifyItemRemoved(index);
+        notes.remove(index);
+
     }
 
     @Override

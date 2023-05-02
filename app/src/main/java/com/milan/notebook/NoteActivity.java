@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,6 +28,7 @@ public class NoteActivity extends AppCompatActivity {
     RecyclerView rvColor;
     NoteColorAdapter noteAdapter;
     Integer selectedColor = Color.WHITE;
+    MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,9 @@ public class NoteActivity extends AppCompatActivity {
         etDescription = findViewById(R.id.et_note_description);
         addNotes = findViewById(R.id.addNote);
         rvColor = findViewById(R.id.color_list);
+        toolbar = findViewById(R.id.add_note_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for (int i = 0; i <= 50; i++) {
