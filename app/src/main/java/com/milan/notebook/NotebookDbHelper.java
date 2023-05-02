@@ -48,6 +48,14 @@ public class NotebookDbHelper extends SQLiteOpenHelper {
         return db.insert(TABLE_NAME, null, values);
     }
 
+    //delete Note
+    public void deleteNote(Long id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_NAME, NOTE_ENTRY_ID + "=?", new String[]{
+                String.valueOf(id)
+        });
+    }
+
     // Retrieve all notes from the database
     public ArrayList<Note> getAllNotes() {
         ArrayList<Note> notesList = new ArrayList<>();
@@ -62,7 +70,7 @@ public class NotebookDbHelper extends SQLiteOpenHelper {
                 String description = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_ENTRY_DESCRIPTION));
                 String category = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_ENTRY_CATEGORY));
                 Integer color = cursor.getInt(cursor.getColumnIndexOrThrow(NOTE_ENTRY_COLOR));
-                Note note = new Note(title, description, category,color);
+                Note note = new Note(title, description, category, color,id);
                 notesList.add(note);
             } while (cursor.moveToNext());
         }

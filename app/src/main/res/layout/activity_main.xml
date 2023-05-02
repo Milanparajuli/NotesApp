@@ -26,8 +26,8 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        app:spanCount="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv_notes"/>
