@@ -41,8 +41,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public void deleteNote(Note note){
         Integer index = notes.indexOf(note);
         Log.d("tag", index.toString());
+        notes.remove(note);
         notifyItemRemoved(index);
-        notes.remove(index);
+
 
     }
 
