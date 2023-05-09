@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.milan.notebook.R;
 
@@ -17,17 +19,20 @@ import retrofit2.Response;
 public class QuotesActivity extends AppCompatActivity {
 
     RecyclerView quotesrv;
+    ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quotes);
         quotesrv = findViewById(R.id.quoteList);
+        pb = findViewById(R.id.progressBar_cyclic);
 
         ApiService service = RetrofitClient.getRetrofit().create(ApiService.class);
         service.getQuotes().enqueue(new Callback<List<Quote>>() {
             @Override
             public void onResponse(Call<List<Quote>> call, Response<List<Quote>> response) {
+                pb.setVisibility(View.GONE);
                 Log.d("tag", "response size is:" + response.body().size());
                 for (Quote quote: response.body()){
                     Log.d("tag", quote.getAuthor());

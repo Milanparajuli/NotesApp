@@ -49,8 +49,8 @@ public class QuoteAdapter extends RecyclerView.Adapter<QuoteAdapter.QuoteViewHol
         }
 
         public void bindView(Quote quote) {
-            author.setText(quote.getAuthor());
-            quotetv.setText(quote.getQuote());
+            author.setText("Author is: " + quote.getAuthor());
+            quotetv.setText("Quote: " + quote.getQuote());
         }
     }
 }
